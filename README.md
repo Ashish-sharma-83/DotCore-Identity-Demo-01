@@ -1,5 +1,10 @@
 # DotCore-Identity-Demo-01
 
-ASP.NET Core Identity
+ASP.NET Core Identity:
 
-ASP.NET Core Identity is a membership system. It allows us to create, read, update and delete user accounts. Supports account confirmation, authentication, authorisation, password recovery, two-factor authentication with SMS. It also supports external login providers like Microsoft, Facebook, Google etc. We will discuss implementing these features in our upcoming videos in this series.
+1. Is an API that supports user interface (UI) login functionality.
+2. Manages users, passwords, profile data, roles, claims, tokens, email confirmation, and more.
+Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include Facebook, Google, Microsoft Account, and Twitter.
+
+For information on how to globally require all users to be authenticated, see Require authenticated users.
+Reference Link: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio
