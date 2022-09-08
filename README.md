@@ -129,13 +129,11 @@ You may want the cookie to persist across browser sessions. This persistence sho
 The following code snippet creates an identity and corresponding cookie that survives through browser closures. Any sliding expiration settings previously configured are honored. If the cookie expires while the browser is closed, the browser clears the cookie once it's restarted.
 Set IsPersistent to true in AuthenticationProperties:
 
-// using Microsoft.AspNetCore.Authentication;
-await HttpContext.SignInAsync(
-    CookieAuthenticationDefaults.AuthenticationScheme,
-    new ClaimsPrincipal(claimsIdentity),
-    new AuthenticationProperties
-    {
-        IsPersistent = true
-    });
-  
+using Microsoft.AspNetCore.Authentication;
+await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity),
+                               new AuthenticationProperties
+                               {
+                                    IsPersistent = true
+                                });
+ 
   
