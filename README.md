@@ -18,27 +18,27 @@ Add cookie authentication
 Add the Authentication Middleware services with the AddAuthentication and AddCookie methods.
 Call UseAuthentication and UseAuthorization to set the HttpContext.User property and run the Authorization Middleware for requests. UseAuthentication and UseAuthorization must be called before Map methods such as MapRazorPages and MapDefaultControllerRoute.
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-        options.SlidingExpiration = true;
-        options.AccessDeniedPath = "/Forbidden/";
-    });
-    
-    
-var cookiePolicyOptions = new CookiePolicyOptions
-{
-    MinimumSameSitePolicy = SameSiteMode.Strict,
-};
-app.UseCookiePolicy(cookiePolicyOptions);
+	builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+	.AddCookie(options =>
+	{
+		options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+		options.SlidingExpiration = true;
+		options.AccessDeniedPath = "/Forbidden/";
+	});
+
+	var cookiePolicyOptions = new CookiePolicyOptions
+	{
+		MinimumSameSitePolicy = SameSiteMode.Strict,
+	};
+	app.UseCookiePolicy(cookiePolicyOptions);
 
 Create an authentication cookie
 To create a cookie holding user information, construct a ClaimsPrincipal. The user information is serialized and stored in the cookie.
 
-public async Task<IActionResult> OnPostAsync(string returnUrl = null)
-{
-    ReturnUrl = returnUrl;
+
+	public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+	{
+   	 ReturnUrl = returnUrl;
 
     if (ModelState.IsValid)
     {
@@ -104,23 +104,23 @@ public async Task<IActionResult> OnPostAsync(string returnUrl = null)
 
     // Something failed. Redisplay the form.
     return Page();
-}
+	}
   
 Sign out
 To sign out the current user and delete their cookie, call SignOutAsync:
- public async Task OnGetAsync(string returnUrl = null)
-{
-    if (!string.IsNullOrEmpty(ErrorMessage))
-    {
-        ModelState.AddModelError(string.Empty, ErrorMessage);
-    }
 
-    // Clear the existing external cookie
-    await HttpContext.SignOutAsync(
-        CookieAuthenticationDefaults.AuthenticationScheme);
+	public async Task OnGetAsync(string returnUrl = null)
+	{ 
+		 if (!string.IsNullOrEmpty(ErrorMessage))
+		 {
+		  ModelState.AddModelError(string.Empty, ErrorMessage);
+		 }
+		 // Clear the existing external cookie
+		 await HttpContext.SignOutAsync(
+		 CookieAuthenticationDefaults.AuthenticationScheme);
 
-    ReturnUrl = returnUrl;
-}
+		 ReturnUrl = returnUrl;
+	}
   
   
 # Persistent cookies:
@@ -128,12 +128,13 @@ You may want the cookie to persist across browser sessions. This persistence sho
 
 The following code snippet creates an identity and corresponding cookie that survives through browser closures. Any sliding expiration settings previously configured are honored. If the cookie expires while the browser is closed, the browser clears the cookie once it's restarted.
 Set IsPersistent to true in AuthenticationProperties:
-
-using Microsoft.AspNetCore.Authentication;
-await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity),
-                               new AuthenticationProperties
-                               {
-                                    IsPersistent = true
-                                });
  
+	//using Microsoft.AspNetCore.Authentication;
+	await HttpContext.SignInAsync( CookieAuthenticationDefaults.AuthenticationScheme, 
+								   new ClaimsPrincipal(claimsIdentity),
+								   new AuthenticationProperties
+								   {
+										IsPersistent = true
+									});
+	 }
   
