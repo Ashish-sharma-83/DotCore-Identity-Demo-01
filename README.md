@@ -9,11 +9,11 @@ Users can create an account with the login information stored in Identity or the
 For information on how to globally require all users to be authenticated, see Require authenticated users.
 Reference Link: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-3.1&tabs=visual-studio
 
-Authentication And Authorization In ASP.NET Core:
+# Authentication And Authorization In ASP.NET Core:
 Authentication is the process of validating user credentials and authorization is the process of checking privileges for a user to access specific modules in an application. In this article, we will see how to protect an ASP.NET Core Web API application by implementing JWT authentication. We will also see how to use authorization in ASP.NET Core to provide access to various functionality of the application. We will store user credentials in an SQL server database and we will use Entity framework and Identity framework for database operations.
 
 
-Use cookie authentication without ASP.NET Core Identity:
+# Use cookie authentication without ASP.NET Core Identity:
 Add cookie authentication
 Add the Authentication Middleware services with the AddAuthentication and AddCookie methods.
 Call UseAuthentication and UseAuthorization to set the HttpContext.User property and run the Authorization Middleware for requests. UseAuthentication and UseAuthorization must be called before Map methods such as MapRazorPages and MapDefaultControllerRoute.
@@ -123,7 +123,7 @@ To sign out the current user and delete their cookie, call SignOutAsync:
 }
   
   
-Persistent cookies:
+# Persistent cookies:
 You may want the cookie to persist across browser sessions. This persistence should only be enabled with explicit user consent with a "Remember Me" checkbox on sign in or a similar mechanism.
 
 The following code snippet creates an identity and corresponding cookie that survives through browser closures. Any sliding expiration settings previously configured are honored. If the cookie expires while the browser is closed, the browser clears the cookie once it's restarted.
